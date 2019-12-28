@@ -12,7 +12,7 @@
       <el-container>
         <el-header class="app-header">
           <div
-            style="width: 60px; cursor: pointer;"
+            style="width: 30px; cursor: pointer;"
             @click.prevent="toggleSideBar"
           >
             <i v-show="!isCollapse" class="fa fa-outdent"></i>
@@ -94,4 +94,14 @@ export default {
 };
 </script>
 
-<style></style>
+<style>
+.app-body {
+  background-color: #f0f2f5
+}
+/* .el-menu {
+  background-color: none
+}
+.el-submenu__title{
+  color: #bfcbd9
+} */
+</style>
