@@ -2,9 +2,12 @@ import Vue from "vue";
 import VueRouter from "vue-router";
 // import Home from "../views/Home.vue";
 
+/** router modules */
+import systemRouter from "./modules/system";
+
 Vue.use(VueRouter);
 
-const routes = [
+export const constantRouterMap = [
   {
     path: "/",
     name: "Dashboard",
@@ -71,22 +74,32 @@ const routes = [
   }
 ];
 
-const router = new VueRouter({
-  routes
+export default new VueRouter({
+  mode: "hash",
+  scrollBehavior: () => ({ y: 0 }),
+  routes: constantRouterMap
 });
+// const router = new VueRouter({
+//   routes
+// });
 
-router.beforeEach((to, from, next) => {
-  if (to.path === "/login") {
-    sessionStorage.removeItem("user");
-  }
-  var user = sessionStorage.getItem("user");
-  if (!user && to.path !== "/login") {
-    next({
-      path: "/login"
-    });
-  } else {
-    next();
-  }
-});
+// router.beforeEach((to, from, next) => {
+//   if (to.path === "/login") {
+//     sessionStorage.removeItem("user");
+//   }
+//   var user = sessionStorage.getItem("user");
+//   if (!user && to.path !== "/login") {
+//     next({
+//       path: "/login"
+//     });
+//   } else {
+//     next();
+//   }
+// });
 
-export default router;
+// export default router;
+export const asyncRouterMap = [
+  /** 其他的异步路由表 */
+  systemRouter,
+  { path: "*", redirect: "/404", hidden: true }
+];
